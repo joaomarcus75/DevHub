@@ -1,65 +1,116 @@
 DevHub API
 
-Goal: Each user creates an account, logs in, and manages only their own profile and projects.
+Goal: Each user can create an account, log in, and manage only their own profile and projects.
 
-Backend: NestJS
+🏗️ Tech Stack
 
-Frontend: Angular + Material UI
+- Backend: NestJS
 
-Database: MongoDB (via Mongoose)
+- Frontend: Angular + Material UI
 
-Validation: Zod
+- Database: MongoDB (via Mongoose)
 
-Authentication: JWT
+- Validation: Zod
 
-File Upload: Multer
+- Authentication: JWT
 
-Simple pagination and filters for the user’s own projects
+- File Uploads: Multer
 
-Documentation: Swagger
+- Documentation: Swagger
 
-Testing: Jest
+- Testing: Jest
+
 
 🔹 Features
 
-User
+- User
 
-Registration and login (JWT)
+- Registration and login (JWT)
 
-Fields: name, email, password, profile picture
+- Fields: name, email, password, profile picture
 
-Optional CV upload
+- Optional CV upload
 
-Projects
+- Projects
 
-CRUD for projects linked to the user
+- CRUD for projects linked to the user
 
-Fields: title, description, tags, project image
+- Fields: title, description, tags, project image
 
-Simple pagination and filters (by title or tag)
+- Simple pagination and filters (by title or tag)
 
-Middlewares
+- Middlewares
 
-Basic logger
+- Basic logger
 
-Global error handling
+- Global error handling
 
-Swagger
+- Swagger
 
-API documentation (/api/docs)
+- API documentation available at /api/docs
 
-Testing
+- Testing
 
-Unit tests for services
+- Unit tests for services
 
-Integration tests for routes
+- Integration tests for routes
+
 
 Angular Frontend
 
-Login and registration
+- Login and registration forms
 
-Dashboard with user’s project list
+- Dashboard with user’s project list
 
-Form to create/edit projects
+- Form to create/edit projects
 
-File uploads
+- File uploads
+
+
+
+🚀 Getting Started
+
+Follow these steps to run DevHub locally:
+
+
+1️⃣ Clone the repository
+git clone https://github.com/your-username/devhub-backend.git
+
+2️⃣ Install dependencies
+yarn install
+
+3️⃣ Setup environment variables
+Create a .env file in the root folder:
+
+MONGO_URI=mongodb://127.0.0.1:27017/devhub
+MONGO_DB_NAME=devhub
+JWT_SECRET=your_jwt_secret_here
+
+Replace your_jwt_secret_here with a secure string.
+
+4️⃣ Run migrations
+yarn migration:up
+
+This will create the necessary collections and indexes.
+
+5️⃣ Start the backend and frontend:
+yarn start:dev
+
+6️⃣ Access Swagger API documentation
+http://localhost:3000/api/docs#/
+
+7️⃣Running tests
+
+Backend tests:
+yarn test
+
+Watch mode:
+yarn test:watch
+
+
+
+
+
+
+
+
