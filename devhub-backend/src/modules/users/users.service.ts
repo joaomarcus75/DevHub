@@ -13,35 +13,39 @@ export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
   async create(name: string, email: string, password: string): Promise<User> {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new this.userModel({ name, email, password: hashedPassword });
-    return user.save();
+    try {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const user = new this.userModel({
+        name,
+        email,
+        password: hashedPassword,
+      });
+      return await user.save();
+    } catch (error) {
+      throw new InternalServerErrorException(error.message);
+    }
   }
 
   async findByEmail(email: string): Promise<User> {
     try {
       const user = await this.userModel.findOne({ email }).exec();
       if (!user) {
-        //404
         throw new NotFoundException(`User with email ${email} not found`);
       }
       return user;
     } catch (error) {
-      //500
       throw new InternalServerErrorException(error.message);
     }
   }
 
   async findById(id: string): Promise<User> {
     try {
-      const user = await this.userModel.findOne({ id }).exec();
+      const user = await this.userModel.findById(id).exec();
       if (!user) {
-        //404
-        throw new NotFoundException(`User with email ${id} not found`);
+        throw new NotFoundException(`User with id ${id} not found`);
       }
       return user;
     } catch (error) {
-      //500
       throw new InternalServerErrorException(error.message);
     }
   }
